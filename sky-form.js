@@ -142,16 +142,15 @@
 					return false;
 				}
 
-				var wrap = angular.element('<div class="selector"></div>');
+				var wrap = element.wrap(angular.element('<div class="selector"></div>')).parent();
 				var valueHolder = angular.element('<span></span>');
 
-				element.wrap(wrap);
-				valueHolder.html(element.val());
 				wrap.append(valueHolder);
 
 				var updateValue = function() {
 					valueHolder.html(element.val());
 				};
+				updateValue();
 
 				/* Update value on model-changes (if angular-field) */
 				scope.$watch(attributes.ngModel, function() {
@@ -190,9 +189,9 @@
 					return false;
 				}
 
-				var wrap = angular.element('<div class="button"></div>');
+				var wrap = element.wrap(angular.element('<div class="button"></div>')).parent();
 				var valueHolder = angular.element('<span></span>');
-				element.wrap(wrap);
+
 				wrap.append(valueHolder);
 
 				var updateValue = function() {
@@ -245,11 +244,10 @@
 				var wrap, updateValue, valueHolder;
 
 				if(element.attr('type') == 'file') {
-					wrap = angular.element('<div class="uploader"></div>');
+					wrap = element.wrap(angular.element('<div class="uploader"></div>')).parent();
 					valueHolder = angular.element('<span class="filename"></span>');
 					var actionBtn = angular.element('<span class="action">Vælg fil</span>');
 
-					element.wrap(wrap);
 					wrap.append(valueHolder);
 					wrap.append(actionBtn);
 
@@ -262,11 +260,10 @@
 					};
 
 				} else if(element.attr('type') == 'checkbox') {
-					wrap = angular.element('<div class="checker"></div>');
-					valueHolder = angular.element('<span></span>');
 
-					element.wrap(valueHolder);
-					valueHolder.wrap(wrap);
+					valueHolder = element.wrap(angular.element('<span></span>')).parent();
+
+					wrap = valueHolder.wrap(angular.element('<div class="checker"></div>')).parent();
 
 					updateValue = function() {
 						if(element[0].checked) {
@@ -277,11 +274,10 @@
 					};
 
 				} else if(element.attr('type') == 'radio') {
-					wrap = angular.element('<div class="radio"></div>');
-					valueHolder = angular.element('<span></span>');
 
-					element.wrap(valueHolder);
-					valueHolder.wrap(wrap);
+					valueHolder = element.wrap(angular.element('<span></span>')).parent();
+
+					wrap = valueHolder.wrap(angular.element('<div class="radio"></div>')).parent();
 
 					updateValue = function(calledExternal) {
 						if(element[0].checked) {
@@ -296,10 +292,9 @@
 					skyformRadios.add(element[0].name, updateValue);
 
 				} else if(element.attr('type') == 'submit' || element.attr('type') == 'reset') {
-					wrap = angular.element('<div class="button"></div>');
+					wrap = element.wrap(angular.element('<div class="button"></div>')).parent();
 					valueHolder = angular.element('<span></span>');
 
-					element.wrap(wrap);
 					wrap.append(valueHolder);
 
 					updateValue = function() {
@@ -308,9 +303,8 @@
 
 				} else if (element.attr('datepicker-popup')) {
 					updateValue=function() {};
-					wrap = angular.element('<div class="date-picker-wrapper"></div>');
+					wrap = element.wrap(angular.element('<div class="date-picker-wrapper"></div>')).parent();
 
-					element.wrap(wrap);
 					wrap.append(valueHolder);
 
 				} else {
