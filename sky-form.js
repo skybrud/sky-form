@@ -148,7 +148,7 @@
 				wrap.append(valueHolder);
 
 				var updateValue = function() {
-					valueHolder.html(element.val());
+					valueHolder.html(angular.element(element[0].querySelector(':checked')).html());
 				};
 				updateValue();
 
