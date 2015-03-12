@@ -128,7 +128,7 @@
 		};
 	}]);
 
-	angular.module('skyform').directive('select',['skyformMethods','skyformFields',function (skyformMethods, skyformFields) {
+	angular.module('skyform').directive('select',['skyformMethods', 'skyformFields', '$timeout', function (skyformMethods, skyformFields, $timeout) {
 		return {
 			restrict:'E',
 			link:function(scope,element,attributes) {
@@ -150,8 +150,12 @@
 				var updateValue = function() {
 					valueHolder.html(angular.element(element[0].querySelector(':checked')).html());
 				};
-				updateValue();
-
+				
+				/* Set initial value in view after timeout, to fix an issue when options are passed via ngRepeat */
+				$timeout(function() {
+					updateValue();
+				},0);
+				
 				/* Update value on model-changes (if angular-field) */
 				scope.$watch(attributes.ngModel, function() {
 					updateValue();
