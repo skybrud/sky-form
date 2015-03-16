@@ -13,6 +13,7 @@ module.exports = function(grunt) {
 						'*.provider.js',
 						'*.config.js',
 						'*.js',
+						'!Gruntfile.js'
 					],
 					dest: 'dist/skyform.min.js'
 				}]
