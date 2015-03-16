@@ -1,0 +1,17 @@
+{
+  "name": "skyform",
+  "version": "1.0.0",
+  "description": "Enhancing the styleability of form-fields with AngularJS.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/filipbech/skyform.git"
+  },
+  "author": "Filip Bruun Bech-Larsen",
+  "bugs": {
+    "url": "https://github.com/filipbech/skyform/issues"
+  },
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-uglify": "^0.8.0"
+  }
+}
