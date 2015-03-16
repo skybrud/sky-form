@@ -20,7 +20,7 @@
 			if(element.attr('type') == 'file') {
 				wrap = element.wrap(angular.element('<div class="uploader"></div>')).parent();
 				valueHolder = angular.element('<span class="filename"></span>');
-				var actionBtn = angular.element('<span class="action">Browse/span>');
+				var actionBtn = angular.element('<span class="action">Browse</span>');
 
 				wrap.append(valueHolder);
 				wrap.append(actionBtn);
