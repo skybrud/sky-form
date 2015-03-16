@@ -20,14 +20,14 @@
 			if(element.attr('type') == 'file') {
 				wrap = element.wrap(angular.element('<div class="uploader"></div>')).parent();
 				valueHolder = angular.element('<span class="filename"></span>');
-				var actionBtn = angular.element('<span class="action">Vælg fil</span>');
+				var actionBtn = angular.element('<span class="action">Browse/span>');
 
 				wrap.append(valueHolder);
 				wrap.append(actionBtn);
 
 				updateValue = function() {
 					if (!element.val()) {
-						valueHolder.html('vælg en fil');
+						valueHolder.html('Choose a file');
 					} else {
 						valueHolder.html(element.val());
 					}
