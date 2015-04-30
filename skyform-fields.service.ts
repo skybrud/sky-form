@@ -1,7 +1,3 @@
-interface Window {
-    skyform?: any;
-};
-
 (function() {
 	'use strict';
 
@@ -9,7 +5,7 @@ interface Window {
 
 	skyformFields.$inject = ['$rootScope','$compile'];
 
-	function skyformFields($rootScope,$compile) {
+	function skyformFields($rootScope,$compile):skyformFields {
 		var _this=this;
 
 		var fields = [];
@@ -41,11 +37,14 @@ interface Window {
 		});
 
 		/* Assigning this method to the window, so its available from outside angular... */
-		window.skyform={};
-		window.skyform.update = _this.update;
-		window.skyform.add = function(ele) {
-			$compile(angular.element(ele))($rootScope);
+		window.skyform={
+			update:_this.update,
+			add:function(ele) {
+				$compile(angular.element(ele))($rootScope);
+			}
 		};
+
+		return this;
 	}
 
 })();

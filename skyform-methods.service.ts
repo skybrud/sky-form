@@ -3,8 +3,11 @@
 
 	angular.module('skyform').service('skyformMethods', skyformMethods);
 
-	function skyformMethods() {
-		var addHover=function(element,wrap) {
+	function skyformMethods():skyformMethods {
+
+		var _this = this;
+
+		_this.addHover=function(element,wrap) {
 			/* Hover methods*/
 			element.on('mouseover', function() {
 				wrap.addClass('hover');
@@ -13,7 +16,7 @@
 				wrap.removeClass('hover');
 			});
 		};
-		var addFocus=function(element,wrap) {
+		_this.addFocus=function(element,wrap) {
 			/* Focus methods*/
 			element.on('focus', function() {
 				wrap.addClass('focus');
@@ -23,7 +26,7 @@
 			});
 		};
 
-		var addActive = function(element,wrap) {
+		_this.addActive = function(element,wrap) {
 			/* control 'active'-class */
 			element.on('mousedown', function() {
 				wrap.addClass('active');
@@ -33,19 +36,14 @@
 			});
 		};
 
-		var moveId = function(element,wrap) {
+		_this.moveId = function(element,wrap) {
 			/* should this be deprecated, since its only for uniform... */
 			if(element.attr('id') && element != wrap) {
 				wrap.attr('id','uniform-'+element.attr('id'));
 			}
 		};
 
-		return {
-			addHover:addHover,
-			addFocus:addFocus,
-			addActive:addActive,
-			moveId:moveId
-		};
+		return this;
 	}
 
 })();

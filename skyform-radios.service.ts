@@ -1,7 +1,9 @@
 (function() {
 	'use strict';
 
-	angular.module('skyform').service('skyformRadios', function() {
+	angular.module('skyform').service('skyformRadios', skyformRadios);
+
+	function skyformRadios():skyformRadios {
 		var _this=this;
 
 		var radios = {};
@@ -30,7 +32,9 @@
 			});
 			radios[name].splice(index, 1);
 		};
-	});
+
+		return this;
+	}
 
 
 })();
