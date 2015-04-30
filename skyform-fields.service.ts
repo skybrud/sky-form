@@ -1,3 +1,7 @@
+interface Window {
+    skyform?: any;
+};
+
 (function() {
 	'use strict';
 
