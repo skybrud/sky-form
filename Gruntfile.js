@@ -2,6 +2,25 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
+		ts: {
+			toTmp: {
+				options:{
+					sourceMap:true
+				},
+				out:'.tmp/skyform.js',
+				files: [{
+					src: [
+						'definitions/**/*.d.ts',
+						'skyform.d.ts',
+						'skyform.module.ts',
+						'*.ts'
+					]
+				}]
+
+			}
+		},
+
+
 		uglify: {
 			toDist: {
 				options: {
@@ -9,11 +28,7 @@ module.exports = function(grunt) {
 				},
 				files: [{
 					src: [
-						'*.module.js',
-						'*.provider.js',
-						'*.config.js',
-						'*.js',
-						'!Gruntfile.js'
+						'.tmp/skyform.js'
 					],
 					dest: 'dist/skyform.min.js'
 				}]
@@ -21,7 +36,8 @@ module.exports = function(grunt) {
 		}
 	});
 
+	grunt.loadNpmTasks('grunt-ts');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 
-	grunt.registerTask('default', ['uglify:toDist']);
+	grunt.registerTask('default', ['ts:toTmp','uglify:toDist']);
 };
