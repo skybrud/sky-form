@@ -178,11 +178,12 @@
             scope.$watch(attributes.ngModel, function () {
                 updateValue();
             });
-            /*TODO: only observe checked attribute if radio/checkbox  */
-            /* Update value if the attribute updates in a $digest (e.g. value="{{something}}") */
-            attributes.$observe('checked', function () {
-                updateValue();
-            });
+            if ((element.attr('type') == 'radio') || (element.attr('type') == 'checkbox')) {
+                /* Update value if the attribute updates in a $digest (e.g. value="{{something}}") */
+                attributes.$observe('checked', function () {
+                    updateValue();
+                });
+            }
             attributes.$observe('value', function () {
                 updateValue();
             });

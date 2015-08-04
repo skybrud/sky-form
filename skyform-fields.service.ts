@@ -1,11 +1,11 @@
-/* TODO: add module sky */
-interface PublicSkyFormMethods {
-	add(DOMElement:Element):void;
-	update():void;
+declare module sky {
+	interface PublicSkyFormMethods {
+		add(DOMElement:Element):void;
+		update():void;
+	}
 }
-
 interface Window {
-    skyform?: PublicSkyFormMethods;
+    skyform?: sky.PublicSkyFormMethods;
 }
 
 (function() {
@@ -15,7 +15,7 @@ interface Window {
 
 	skyformFields.$inject = ['$rootScope','$compile'];
 
-	function skyformFields($rootScope,$compile):skyformFields {
+	function skyformFields($rootScope,$compile):sky.skyformFields {
 		var _this=this;
 
 		var fields = [];

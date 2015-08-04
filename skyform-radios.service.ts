@@ -1,14 +1,16 @@
-interface skyformRadios {
-	add(String, any):void;
-	update(String):void;
-	remove(String,any):void;
+declare module sky {
+	interface skyformRadios {
+		add(String, any):void;
+		update(String):void;
+		remove(String,any):void;
+	}
 }
 (function() {
 	'use strict';
 
 	angular.module('skyform').service('skyformRadios', skyformRadios);
 
-	function skyformRadios():skyformRadios {
+	function skyformRadios():sky.skyformRadios {
 		var _this=this;
 
 		var radios = {};
