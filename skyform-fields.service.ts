@@ -1,3 +1,12 @@
+interface PublicSkyFormMethods {
+	add(Element):void;
+	update():void;
+}
+
+interface Window {
+    skyform?: PublicSkyFormMethods;
+}
+
 (function() {
 	'use strict';
 

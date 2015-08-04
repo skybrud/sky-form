@@ -1,3 +1,8 @@
+interface skyformRadios {
+	add(String, any):void;
+	update(String):void;
+	remove(String,any):void;
+}
 (function() {
 	'use strict';
 

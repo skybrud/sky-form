@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "sourceMap": true
+    "target":"es5",
+    "declaration":true,
+    "out":"dist/skyform.js",
+    "sourceMap": false
   },
   "files": [
     "definitions/angularjs/angular.d.ts",
     "definitions/jquery/jquery.d.ts",
-    "skyform.d.ts",
     "skyform.module.ts",
     "skyform-button.directive.ts",
     "skyform-fields.service.ts",
