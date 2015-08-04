@@ -1,15 +1,15 @@
 declare module sky {
 	interface skyformFields {
-		add(element:Element, fn:any):void;
-		remove(Element):void;
-		update(Element):void;
+		add(element:Element, fn:any): void;
+		remove(element: Element): void;
+		update(element: Element): void;
 	}
 	
 	interface skyformMethods {
-		addHover(element:Element, wrap:Element):void;
-		addFocus(element:Element, wrap:Element):void;
-		addActive(element:Element, wrap:Element):void;
-		moveId(element:Element, wrap:Element):void;
+		addHover(element: Element, wrap: Element):void;
+		addFocus(element: Element, wrap: Element):void;
+		addActive(element: Element, wrap: Element):void;
+		moveId(element: Element, wrap: Element):void;
 	}
 }
 
@@ -18,11 +18,11 @@ declare module sky {
 
 	angular.module('skyform').service('skyformMethods', skyformMethods);
 
-	function skyformMethods():sky.skyformMethods {
+	function skyformMethods(): sky.skyformMethods {
 
 		var _this = this;
 
-		_this.addHover=function(element,wrap) {
+		_this.addHover = function(element, wrap) {
 			/* Hover methods*/
 			element.on('mouseover', function() {
 				wrap.addClass('hover');
@@ -31,7 +31,7 @@ declare module sky {
 				wrap.removeClass('hover');
 			});
 		};
-		_this.addFocus=function(element,wrap) {
+		_this.addFocus = function(element, wrap) {
 			/* Focus methods*/
 			element.on('focus', function() {
 				wrap.addClass('focus');
@@ -41,7 +41,7 @@ declare module sky {
 			});
 		};
 
-		_this.addActive = function(element,wrap) {
+		_this.addActive = function(element, wrap) {
 			/* control 'active'-class */
 			element.on('mousedown', function() {
 				wrap.addClass('active');
@@ -51,7 +51,7 @@ declare module sky {
 			});
 		};
 
-		_this.moveId = function(element,wrap) {
+		_this.moveId = function(element, wrap) {
 			/* should this be deprecated, since its only for uniform... */
 			if(element.attr('id') && element != wrap) {
 				wrap.attr('id','uniform-'+element.attr('id'));

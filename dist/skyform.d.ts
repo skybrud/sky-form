@@ -10,8 +10,8 @@ interface Window {
 declare module sky {
     interface skyformFields {
         add(element: Element, fn: any): void;
-        remove(Element: any): void;
-        update(Element: any): void;
+        remove(element: Element): void;
+        update(element: Element): void;
     }
     interface skyformMethods {
         addHover(element: Element, wrap: Element): void;
@@ -22,8 +22,8 @@ declare module sky {
 }
 declare module sky {
     interface skyformRadios {
-        add(String: any, any: any): void;
-        update(String: any): void;
-        remove(String: any, any: any): void;
+        add(name: String, updatefuncion: any): void;
+        update(name: String): void;
+        remove(name: String, updatefuncion: any): void;
     }
 }

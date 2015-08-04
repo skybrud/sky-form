@@ -1,16 +1,16 @@
 (function() {
 	'use strict';
-	angular.module('skyform').directive('select',select);
+	angular.module('skyform').directive('select', select);
 
 	select.$inject = ['skyformMethods', 'skyformFields', '$timeout'];
 
 	function select(skyformMethods, skyformFields, $timeout) {
 		var directive = {
-			restrict:'E',
-			link:link
+			restrict: 'E',
+			link: link
 		};
 
-		function link(scope,element,attributes) {
+		function link(scope, element, attributes) {
 
 			if(attributes.noUniform || attributes.noUniform === "" || attributes.noSkyform || attributes.noSkyform === "") {
 				return false;
@@ -50,12 +50,12 @@
 				updateValue();
 			});
 
-			skyformMethods.addHover(element,wrap);
-			skyformMethods.addFocus(element,wrap);
-			skyformMethods.moveId(element,wrap);
+			skyformMethods.addHover(element, wrap);
+			skyformMethods.addFocus(element, wrap);
+			skyformMethods.moveId(element, wrap);
 			/* SELECTS has no .active state */
 
-			skyformFields.add(element[0],updateValue,wrap);
+			skyformFields.add(element[0], updateValue, wrap);
 			scope.$on('$destroy', function() {
 				skyformFields.remove(element[0]);
 			});

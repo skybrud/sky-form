@@ -3,12 +3,12 @@
 
 	angular.module('skyform').directive('button', button);
 
-	button.$inject = ['skyformMethods','skyformFields'];
+	button.$inject = ['skyformMethods', 'skyformFields'];
 
 	function button(skyformMethods, skyformFields) {
 		var directive = {
-			restrict:'E',
-			link:link
+			restrict: 'E',
+			link: link
 		};
 
 		function link(scope,element,attributes) {
@@ -26,12 +26,12 @@
 			};
 			updateValue();
 
-			skyformMethods.addHover(element,wrap);
-			skyformMethods.addFocus(element,wrap);
-			skyformMethods.addActive(element,wrap);
-			skyformMethods.moveId(element,wrap);
+			skyformMethods.addHover(element, wrap);
+			skyformMethods.addFocus(element, wrap);
+			skyformMethods.addActive(element, wrap);
+			skyformMethods.moveId(element, wrap);
 
-			skyformFields.add(element[0],updateValue,wrap);
+			skyformFields.add(element[0], updateValue, wrap);
 			scope.$on('$destroy', function() {
 				skyformFields.remove(element[0]);
 			});

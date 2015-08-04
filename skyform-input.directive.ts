@@ -3,21 +3,23 @@
 
 	angular.module('skyform').directive('input', input);
 
-	input.$inject = ['skyformMethods','skyformRadios','skyformFields'];
+	input.$inject = ['skyformMethods', 'skyformRadios', 'skyformFields'];
 
-	function input(skyformMethods,skyformRadios,skyformFields) {
+	function input(skyformMethods, skyformRadios, skyformFields) {
 		var directive = {
-			restrict:'E',
-			link:link
+			restrict: 'E',
+			link: link
 		};
 
-		function link(scope,element,attributes) {
+		function link(scope, element, attributes) {
 			if(attributes.noUniform || attributes.noUniform === "" || attributes.noSkyform || attributes.noSkyform === "") {
 				return false;
 			}
-			var wrap, updateValue, valueHolder;
+			var wrap, 
+				updateValue, 
+				valueHolder;
 
-			if(element.attr('type') == 'file') {
+			if(element.attr('type') === 'file') {
 				wrap = element.wrap(angular.element('<div class="uploader"></div>')).parent();
 				valueHolder = angular.element('<span class="filename"></span>');
 				var actionBtn = angular.element('<span class="action">Browse</span>');
@@ -33,7 +35,7 @@
 					}
 				};
 
-			} else if(element.attr('type') == 'checkbox') {
+			} else if(element.attr('type') === 'checkbox') {
 
 				valueHolder = element.wrap(angular.element('<span></span>')).parent();
 
@@ -47,7 +49,7 @@
 					}
 				};
 
-			} else if(element.attr('type') == 'radio') {
+			} else if(element.attr('type') === 'radio') {
 
 				valueHolder = element.wrap(angular.element('<span></span>')).parent();
 
@@ -65,7 +67,7 @@
 				};
 				skyformRadios.add(element[0].name, updateValue);
 
-			} else if(element.attr('type') == 'submit' || element.attr('type') == 'reset') {
+			} else if(element.attr('type') === 'submit' || element.attr('type') === 'reset') {
 				wrap = element.wrap(angular.element('<div class="button"></div>')).parent();
 				valueHolder = angular.element('<span></span>');
 
@@ -76,13 +78,13 @@
 				};
 
 			} else if (element.attr('datepicker-popup')) {
-				updateValue=function() {};
+				updateValue = function() {};
 				wrap = element.wrap(angular.element('<div class="date-picker-wrapper"></div>')).parent();
 
 				wrap.append(valueHolder);
 
 			} else {
-				updateValue=function() {};
+				updateValue = function() {};
 				wrap = element;
 				//since there is no wrap, just assign the element to the wrap variable, so the class-changes can still occur!
 
@@ -108,7 +110,7 @@
 				updateValue();
 			});
 
-			if((element.attr('type') == 'radio') || (element.attr('type') == 'checkbox')) {
+			if((element.attr('type') === 'radio') || (element.attr('type') === 'checkbox')) {
 				/* Update value if the attribute updates in a $digest (e.g. value="{{something}}") */
 				attributes.$observe('checked', function() {
 					updateValue();
@@ -127,7 +129,7 @@
 			scope.$on('$destroy', function() {
 				skyformFields.remove(element[0]);
 
-				if(element.attr('type') == 'radio') {
+				if(element.attr('type') === 'radio') {
 					skyformRadios.remove(element[0].name, updateValue);
 				}
 			});

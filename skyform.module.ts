@@ -10,6 +10,6 @@
 (function () {
 	'use strict';
 
-	angular.module('skyform',[]);
+	angular.module('skyform', []);
 
 })();

@@ -1,7 +1,7 @@
 declare module sky {
 	interface PublicSkyFormMethods {
-		add(DOMElement:Element):void;
-		update():void;
+		add(DOMElement:Element): void;
+		update(): void;
 	}
 }
 interface Window {
@@ -13,22 +13,22 @@ interface Window {
 
 	angular.module('skyform').service('skyformFields',skyformFields);
 
-	skyformFields.$inject = ['$rootScope','$compile'];
+	skyformFields.$inject = ['$rootScope', '$compile'];
 
-	function skyformFields($rootScope,$compile):sky.skyformFields {
-		var _this=this;
+	function skyformFields($rootScope, $compile):sky.skyformFields {
+		var _this = this;
 
 		var fields = [];
 
 		_this.add = function(element, fn, wrap) {
-			fields.push({element:element, wrap:wrap, fn:fn});
+			fields.push({element, fn, wrap});
 		};
 
 		_this.remove = function(element) {
-			var index=-1;
-			angular.forEach(fields, function(field,key) {
+			var index = -1;
+			angular.forEach(fields, function(field, key) {
 				if(field.element === element) {
-					index=key;
+					index = key;
 				}
 			});
 			fields.splice(index, 1);
@@ -52,9 +52,9 @@ interface Window {
 		});
 
 		/* Assigning this method to the window, so its available from outside angular... */
-		window.skyform={
-			update:_this.update,
-			add:function(ele) {
+		window.skyform = {
+			update: _this.update,
+			add: function(ele) {
 				$compile(angular.element(ele))($rootScope);
 			}
 		};

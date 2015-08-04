@@ -50,7 +50,7 @@
         var _this = this;
         var fields = [];
         _this.add = function (element, fn, wrap) {
-            fields.push({ element: element, wrap: wrap, fn: fn });
+            fields.push({ element: element, fn: fn, wrap: wrap });
         };
         _this.remove = function (element) {
             var index = -1;
@@ -101,7 +101,7 @@
                 return false;
             }
             var wrap, updateValue, valueHolder;
-            if (element.attr('type') == 'file') {
+            if (element.attr('type') === 'file') {
                 wrap = element.wrap(angular.element('<div class="uploader"></div>')).parent();
                 valueHolder = angular.element('<span class="filename"></span>');
                 var actionBtn = angular.element('<span class="action">Browse</span>');
@@ -116,7 +116,7 @@
                     }
                 };
             }
-            else if (element.attr('type') == 'checkbox') {
+            else if (element.attr('type') === 'checkbox') {
                 valueHolder = element.wrap(angular.element('<span></span>')).parent();
                 wrap = valueHolder.wrap(angular.element('<div class="checker"></div>')).parent();
                 updateValue = function () {
@@ -128,7 +128,7 @@
                     }
                 };
             }
-            else if (element.attr('type') == 'radio') {
+            else if (element.attr('type') === 'radio') {
                 valueHolder = element.wrap(angular.element('<span></span>')).parent();
                 wrap = valueHolder.wrap(angular.element('<div class="radio"></div>')).parent();
                 updateValue = function (calledExternal) {
@@ -144,7 +144,7 @@
                 };
                 skyformRadios.add(element[0].name, updateValue);
             }
-            else if (element.attr('type') == 'submit' || element.attr('type') == 'reset') {
+            else if (element.attr('type') === 'submit' || element.attr('type') === 'reset') {
                 wrap = element.wrap(angular.element('<div class="button"></div>')).parent();
                 valueHolder = angular.element('<span></span>');
                 wrap.append(valueHolder);
@@ -178,7 +178,7 @@
             scope.$watch(attributes.ngModel, function () {
                 updateValue();
             });
-            if ((element.attr('type') == 'radio') || (element.attr('type') == 'checkbox')) {
+            if ((element.attr('type') === 'radio') || (element.attr('type') === 'checkbox')) {
                 /* Update value if the attribute updates in a $digest (e.g. value="{{something}}") */
                 attributes.$observe('checked', function () {
                     updateValue();
@@ -192,7 +192,7 @@
             skyformFields.update(element[0]);
             scope.$on('$destroy', function () {
                 skyformFields.remove(element[0]);
-                if (element.attr('type') == 'radio') {
+                if (element.attr('type') === 'radio') {
                     skyformRadios.remove(element[0].name, updateValue);
                 }
             });

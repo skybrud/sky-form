@@ -1,8 +1,8 @@
 declare module sky {
 	interface skyformRadios {
-		add(String, any):void;
-		update(String):void;
-		remove(String,any):void;
+		add(name: String, updatefuncion: any): void;
+		update(name: String): void;
+		remove(name: String, updatefuncion: any): void;
 	}
 }
 (function() {
@@ -10,14 +10,14 @@ declare module sky {
 
 	angular.module('skyform').service('skyformRadios', skyformRadios);
 
-	function skyformRadios():sky.skyformRadios {
-		var _this=this;
+	function skyformRadios(): sky.skyformRadios {
+		var _this = this;
 
 		var radios = {};
 
 		_this.add = function(name, fn) {
 			if(!radios[name]) {
-				radios[name]=[];
+				radios[name] = [];
 			}
 
 			radios[name].push(fn);
@@ -31,10 +31,10 @@ declare module sky {
 		};
 
 		_this.remove = function(name, fn) {
-			var index=-1;
+			var index = -1;
 			angular.forEach(radios[name], function(updateFn,key) {
 				if(updateFn === fn) {
-					index=key;
+					index = key;
 				}
 			});
 			radios[name].splice(index, 1);
