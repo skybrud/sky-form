@@ -34,7 +34,7 @@
             skyformMethods.addFocus(element, wrap);
             skyformMethods.addActive(element, wrap);
             skyformMethods.moveId(element, wrap);
-            skyformFields.add(element[0], updateValue);
+            skyformFields.add(element[0], updateValue, wrap);
             scope.$on('$destroy', function () {
                 skyformFields.remove(element[0]);
             });
@@ -49,8 +49,8 @@
     function skyformFields($rootScope, $compile) {
         var _this = this;
         var fields = [];
-        _this.add = function (element, fn) {
-            fields.push({ element: element, fn: fn });
+        _this.add = function (element, fn, wrap) {
+            fields.push({ element: element, wrap: wrap, fn: fn });
         };
         _this.remove = function (element) {
             var index = -1;
@@ -65,6 +65,12 @@
             angular.forEach(fields, function (field) {
                 if (!userField || userField == field.element) {
                     field.fn();
+                    if (field.element.disabled) {
+                        field.wrap.addClass('disabled');
+                    }
+                    else {
+                        field.wrap.removeClass('disabled');
+                    }
                 }
             });
         };
@@ -157,7 +163,6 @@
                 //since there is no wrap, just assign the element to the wrap variable, so the class-changes can still occur!
                 element.addClass('uniform-input');
             }
-            updateValue();
             skyformMethods.addHover(element, wrap);
             skyformMethods.addFocus(element, wrap);
             skyformMethods.addActive(element, wrap);
@@ -173,6 +178,7 @@
             scope.$watch(attributes.ngModel, function () {
                 updateValue();
             });
+            /*TODO: only observe checked attribute if radio/checkbox  */
             /* Update value if the attribute updates in a $digest (e.g. value="{{something}}") */
             attributes.$observe('checked', function () {
                 updateValue();
@@ -180,7 +186,9 @@
             attributes.$observe('value', function () {
                 updateValue();
             });
-            skyformFields.add(element[0], updateValue);
+            skyformFields.add(element[0], updateValue, wrap);
+            //updateValue();
+            skyformFields.update(element[0]);
             scope.$on('$destroy', function () {
                 skyformFields.remove(element[0]);
                 if (element.attr('type') == 'radio') {
@@ -305,7 +313,7 @@
             skyformMethods.addFocus(element, wrap);
             skyformMethods.moveId(element, wrap);
             /* SELECTS has no .active state */
-            skyformFields.add(element[0], updateValue);
+            skyformFields.add(element[0], updateValue, wrap);
             scope.$on('$destroy', function () {
                 skyformFields.remove(element[0]);
             });
@@ -330,7 +338,7 @@
             skyformMethods.addHover(element, element);
             skyformMethods.addFocus(element, element);
             skyformMethods.addActive(element, element);
-            skyformFields.add(element[0], null);
+            skyformFields.add(element[0], null, element);
             scope.$on('$destroy', function () {
                 skyformFields.remove(element[0]);
             });

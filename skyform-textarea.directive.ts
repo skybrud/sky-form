@@ -22,7 +22,7 @@
 			skyformMethods.addFocus(element,element);
 			skyformMethods.addActive(element,element);
 
-			skyformFields.add(element[0],null);
+			skyformFields.add(element[0],null,element);
 			scope.$on('$destroy', function() {
 				skyformFields.remove(element[0]);
 			});

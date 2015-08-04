@@ -55,7 +55,7 @@
 			skyformMethods.moveId(element,wrap);
 			/* SELECTS has no .active state */
 
-			skyformFields.add(element[0],updateValue);
+			skyformFields.add(element[0],updateValue,wrap);
 			scope.$on('$destroy', function() {
 				skyformFields.remove(element[0]);
 			});

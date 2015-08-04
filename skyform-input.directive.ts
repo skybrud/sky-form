@@ -89,8 +89,6 @@
 				element.addClass('uniform-input');
 			}
 
-			updateValue();
-
 			skyformMethods.addHover(element,wrap);
 			skyformMethods.addFocus(element,wrap);
 			skyformMethods.addActive(element,wrap);
@@ -110,6 +108,7 @@
 				updateValue();
 			});
 
+			/*TODO: only observe checked attribute if radio/checkbox  */
 			/* Update value if the attribute updates in a $digest (e.g. value="{{something}}") */
 			attributes.$observe('checked', function() {
 				updateValue();
@@ -118,7 +117,11 @@
 				updateValue();
 			});
 
-			skyformFields.add(element[0], updateValue);
+
+			skyformFields.add(element[0], updateValue, wrap);
+
+			//updateValue();
+			skyformFields.update(element[0]);
 
 			scope.$on('$destroy', function() {
 				skyformFields.remove(element[0]);

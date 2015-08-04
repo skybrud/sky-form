@@ -1,5 +1,6 @@
+/* TODO: add module sky */
 interface PublicSkyFormMethods {
-	add(Element):void;
+	add(DOMElement:Element):void;
 	update():void;
 }
 
@@ -19,8 +20,8 @@ interface Window {
 
 		var fields = [];
 
-		_this.add = function(element, fn) {
-			fields.push({element:element, fn:fn});
+		_this.add = function(element, fn, wrap) {
+			fields.push({element:element, wrap:wrap, fn:fn});
 		};
 
 		_this.remove = function(element) {
@@ -37,6 +38,11 @@ interface Window {
 			angular.forEach(fields, function(field) {
 				if(!userField || userField == field.element) {
 					field.fn();
+					if(field.element.disabled) {
+						field.wrap.addClass('disabled');
+					} else {
+						field.wrap.removeClass('disabled');
+					}
 				}
 			});
 		};

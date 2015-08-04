@@ -1,5 +1,5 @@
 interface PublicSkyFormMethods {
-    add(Element: any): void;
+    add(DOMElement: Element): void;
     update(): void;
 }
 interface Window {
