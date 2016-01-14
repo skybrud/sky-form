@@ -29,10 +29,19 @@
 
 				updateValue = function() {
 					if (!element.val()) {
+						if (element[0].multiple) {
+							valueHolder.html('Choose files');
+							return;
+						}
 						valueHolder.html('Choose a file');
-					} else {
-						valueHolder.html(element.val());
+						return;
 					}
+
+					if(element[0].files.length > 1) {
+						valueHolder.html(element[0].files.length + ' files selected');
+						return;
+					}
+					valueHolder.html(element.val());
 				};
 
 			} else if(element.attr('type') === 'checkbox') {
