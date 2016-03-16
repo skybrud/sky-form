@@ -27,7 +27,7 @@
 			wrap.append(valueHolder);
 
 			var updateValue = function() {
-				valueHolder.html(angular.element(element[0].querySelector(':checked')).html());
+				valueHolder.html(element.val());
 			};
 
 			/* Set initial value in view after timeout, to fix an issue when options are passed via ngRepeat */
