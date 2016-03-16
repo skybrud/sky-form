@@ -27,7 +27,8 @@
 			wrap.append(valueHolder);
 
 			var updateValue = function() {
-				valueHolder.html(element.val());
+				var value = element[0].options[element[0].selectedIndex].innerHTML || '';
+				valueHolder.html(value);
 			};
 
 			/* Set initial value in view after timeout, to fix an issue when options are passed via ngRepeat */
@@ -41,7 +42,7 @@
 			});
 
 			/* Update value on element-change */
-			element.on('change', function() {
+			element[0].addEventListener('change', function () {
 				updateValue();
 			});
 
