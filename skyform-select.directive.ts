@@ -31,11 +31,6 @@
 				valueHolder.html(value);
 			};
 
-			/* Set initial value in view after timeout, to fix an issue when options are passed via ngRepeat */
-			$timeout(function() {
-				updateValue();
-			},0);
-
 			/* Update value on model-changes (if angular-field) */
 			scope.$watch(attributes.ngModel, function() {
 				updateValue();
@@ -59,6 +54,12 @@
 			skyformFields.add(element[0], updateValue, wrap);
 			scope.$on('$destroy', function() {
 				skyformFields.remove(element[0]);
+			});
+
+
+			/* Set initial value in view after timeout, to fix an issue when options are passed via ngRepeat */
+			setTimeout(function() {
+				element.triggerHandler('change');
 			});
 
 		}
