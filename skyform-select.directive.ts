@@ -35,6 +35,13 @@
 			scope.$watch(attributes.ngModel, function() {
 				updateValue();
 			});
+			
+			/* Update value on ng-disabled changes if ng-disabled is set (if angular-field) */
+			if(attributes.hasOwnProperty('ngDisabled')) {
+				scope.$watch(attributes.ngDisabled, function(newValue) {
+					wrap.toggleClass('disabled', newValue);
+				});
+			}
 
 			/* Update value on element-change */
 			element[0].addEventListener('change', function () {
